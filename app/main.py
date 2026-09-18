@@ -1,11 +1,20 @@
 # FastAPI Backend
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(
     title="AI-Assisted Software Engineering Analytics API",
     description="API for AI coding agent classification and repository popularity prediction",
     version="1.0.0"
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
@@ -218,8 +227,8 @@ def predict_stars(request: StarsPredictionRequest):
     categorical_features["is_forked"] = (
         categorical_features["is_forked"]
         .map({
-            False: "0.0",
-            True: "1.0"
+            False: "0",
+            True: "1"
         })
     )
 
