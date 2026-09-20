@@ -1,0 +1,24 @@
+.backend-status-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-refresh-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dim);
+  padding: 0.2rem;
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
+}
+
+.status-refresh-btn:hover {
+  color: var(--accent-cyan);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.status-refresh-btn.spinning svg {
+  animation: spin 1s linear infinite;
+}

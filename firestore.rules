@@ -1,0 +1,23 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // User Profile Document: Scoped strictly to the authenticated user's UID
+    match /users/{userId} {
+      allow read, write: if request.auth != null
+                            && request.auth.uid == userId;
+
+      // User Prediction History Subcollection: Scoped strictly to the authenticated user's UID
+      match /predictions/{predictionId} {
+        allow read, write: if request.auth != null
+                              && request.auth.uid == userId;
+      }
+    }
+
+    // Fallback security deny rule: prevent global unauthenticated queries
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

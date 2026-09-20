@@ -1,0 +1,34 @@
+.auth-loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 2rem;
+}
+
+.auth-loading-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 3rem 2.5rem !important;
+  max-width: 420px;
+  width: 100%;
+}
+
+.auth-loading-spinner {
+  color: var(--accent-cyan);
+  animation: spin 1s linear infinite;
+  margin-bottom: 1.25rem;
+}
+
+.auth-loading-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.auth-loading-sub {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
