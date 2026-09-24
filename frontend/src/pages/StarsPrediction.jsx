@@ -89,19 +89,19 @@ export default function StarsPrediction() {
 
   const validateForm = () => {
     if (!formData.repository_owner.trim()) {
-      setError({ title: 'Validation Error', message: 'Repository Owner is required.' });
+      setError({ title: 'Please Check Your Input', message: 'Repository Owner is required.' });
       return false;
     }
     if (!formData.repository_name.trim()) {
-      setError({ title: 'Validation Error', message: 'Repository Name is required.' });
+      setError({ title: 'Please Check Your Input', message: 'Repository Name is required.' });
       return false;
     }
     if (!formData.license) {
-      setError({ title: 'Validation Error', message: 'Please select a software license.' });
+      setError({ title: 'Please Check Your Input', message: 'Please select a software license.' });
       return false;
     }
     if (!formData.language) {
-      setError({ title: 'Validation Error', message: 'Please select a programming language.' });
+      setError({ title: 'Please Check Your Input', message: 'Please select a programming language.' });
       return false;
     }
     return true;
@@ -142,10 +142,10 @@ export default function StarsPrediction() {
 
   // Determine popularity tier
   const getPopularityTier = (stars) => {
-    if (stars >= 5000) return { name: 'Platinum Tier', badgeClass: 'tier-platinum', desc: 'Mega-Popular Framework / Essential Ecosystem Tool' };
-    if (stars >= 500) return { name: 'Gold Tier', badgeClass: 'tier-gold', desc: 'High-Impact Community Project' };
-    if (stars >= 50) return { name: 'Silver Tier', badgeClass: 'tier-silver', desc: 'Active Open Source Library' };
-    return { name: 'Bronze Tier', badgeClass: 'tier-bronze', desc: 'Niche / Personal / Emerging Utility' };
+    if (stars >= 5000) return { name: 'Platinum Tier', badgeClass: 'tier-platinum', desc: 'Widely recognized and essential open-source project' };
+    if (stars >= 500) return { name: 'Gold Tier', badgeClass: 'tier-gold', desc: 'High-impact community project with strong adoption' };
+    if (stars >= 50) return { name: 'Silver Tier', badgeClass: 'tier-silver', desc: 'Active library with emerging community interest' };
+    return { name: 'Bronze Tier', badgeClass: 'tier-bronze', desc: 'Niche, personal, or early-stage software project' };
   };
 
   const tier = result ? getPopularityTier(result.predicted_stars) : null;
@@ -157,14 +157,13 @@ export default function StarsPrediction() {
         <div>
           <div className="page-pre-title" style={{ color: 'var(--accent-amber)' }}>
             <Star size={16} />
-            <span>Model 2 Inference • KNN Regressor (416,751 features)</span>
+            <span>Repository Popularity Prediction • Benchmarked on 260K+ Repos</span>
           </div>
           <h1 className="page-main-title">
-            Repository Popularity <span className="gradient-text">Predictor</span>
+            Estimate Repository <span className="gradient-text">Popularity</span>
           </h1>
           <p className="page-lead-desc">
-            Forecast software repository star count from license type, primary language, fork metrics,
-            and repository namespace length telemetry evaluated against 261,438 open-source repositories.
+            Enter a few details about a GitHub repository to get an estimated star count based on data from over 260,000 open-source projects.
           </p>
         </div>
         <BackendStatus />
@@ -174,7 +173,7 @@ export default function StarsPrediction() {
       <div className="preset-bar">
         <span className="preset-bar-label" style={{ color: 'var(--accent-amber)' }}>
           <Sparkles size={15} />
-          <span>Test with Presets:</span>
+          <span>Try a Sample Repository:</span>
         </span>
         <div className="preset-chips">
           {STARS_PRESETS.map((preset) => (
@@ -201,8 +200,8 @@ export default function StarsPrediction() {
         <div className="cold-start-banner pulse">
           <Clock size={18} className="cold-start-icon" />
           <div className="cold-start-text">
-            <strong>Waking up serverless ML instance on Render...</strong>
-            <span>The KNN regressor uses a 416,751-dimensional sparse feature matrix. Please allow 60-90s on cold-start.</span>
+            <strong>Connecting to our analysis service...</strong>
+            <span>Please allow a minute to start up if it has not been used recently. Thank you for your patience!</span>
           </div>
         </div>
       )}
@@ -212,7 +211,7 @@ export default function StarsPrediction() {
         <div className="error-alert">
           <AlertCircle size={20} className="error-icon" />
           <div className="error-content">
-            <h4>{error.title || 'Inference Error'}</h4>
+            <h4>{error.title || 'Prediction Notice'}</h4>
             <p>{error.message}</p>
           </div>
         </div>
@@ -224,16 +223,16 @@ export default function StarsPrediction() {
         <div className="form-column">
           <GlassCard className="prediction-form-card">
             <form onSubmit={handleSubmit} className="stars-form">
-              {/* Section 1: Namespace Identifiers */}
+              {/* Section 1: Repository Details */}
               <div className="form-section">
                 <h3 className="form-section-title">
                   <GitBranch size={18} style={{ color: 'var(--accent-amber)' }} />
-                  <span>Repository Namespace</span>
+                  <span>Repository Details</span>
                 </h3>
 
                 <div className="input-row-2col">
                   <div className="input-field-group">
-                    <label htmlFor="owner" className="input-label">Repository Owner / Org *</label>
+                    <label htmlFor="owner" className="input-label">Repository Owner / Organization *</label>
                     <input
                       type="text"
                       id="owner"
@@ -259,15 +258,15 @@ export default function StarsPrediction() {
                   </div>
                 </div>
 
-                {/* Live Computed Name Length Display */}
+                {/* Computed Identifier Display */}
                 <div className="derived-length-pill">
                   <div className="length-info">
                     <Hash size={14} className="length-icon" />
-                    <span className="length-label">Calculated Namespace Length:</span>
+                    <span className="length-label">Repository Path:</span>
                     <code className="length-code font-mono">
                       {formData.repository_owner && formData.repository_name
-                        ? `"${formData.repository_owner}/${formData.repository_name}".length`
-                        : '"owner/repo".length'}
+                        ? `${formData.repository_owner}/${formData.repository_name}`
+                        : 'owner/repo'}
                     </code>
                   </div>
                   <span className="length-value font-mono">
@@ -280,7 +279,7 @@ export default function StarsPrediction() {
               <div className="form-section">
                 <h3 className="form-section-title">
                   <Shield size={18} style={{ color: 'var(--accent-amber)' }} />
-                  <span>Software Governance & Stack</span>
+                  <span>License & Language</span>
                 </h3>
 
                 <div className="input-row-2col">
@@ -297,7 +296,7 @@ export default function StarsPrediction() {
                           <option key={lic} value={lic}>{lic}</option>
                         ))}
                       </optgroup>
-                      <optgroup label="All Model Supported Licenses (42)">
+                      <optgroup label="All Supported Licenses (42)">
                         {ALL_LICENSES.map((lic) => (
                           <option key={lic} value={lic}>{lic}</option>
                         ))}
@@ -332,12 +331,12 @@ export default function StarsPrediction() {
               <div className="form-section">
                 <h3 className="form-section-title">
                   <TrendingUp size={18} style={{ color: 'var(--accent-amber)' }} />
-                  <span>Fork Metrics</span>
+                  <span>Fork Information</span>
                 </h3>
 
                 <div className="input-row-2col">
                   <div className="input-field-group">
-                    <label htmlFor="forks" className="input-label">Fork Count *</label>
+                    <label htmlFor="forks" className="input-label">Number of Forks *</label>
                     <input
                       type="number"
                       id="forks"
@@ -351,7 +350,7 @@ export default function StarsPrediction() {
                   </div>
 
                   <div className="input-field-group toggle-group">
-                    <label className="input-label">Is Forked Repository?</label>
+                    <label className="input-label">Is this a Forked Repository?</label>
                     <div className="toggle-switch-wrapper">
                       <label className="switch">
                         <input
@@ -362,7 +361,7 @@ export default function StarsPrediction() {
                         <span className="slider round"></span>
                       </label>
                       <span className="toggle-state-text font-mono">
-                        {formData.is_forked ? 'true (Fork)' : 'false (Root)'}
+                        {formData.is_forked ? 'Yes (Fork)' : 'No (Original)'}
                       </span>
                     </div>
                   </div>
@@ -383,7 +382,7 @@ export default function StarsPrediction() {
                     color: '#1a1300'
                   }}
                 >
-                  {loading ? 'Executing KNN Regression...' : 'Predict Repository Stars'}
+                  {loading ? 'Estimating Popularity...' : 'Estimate Repository Stars'}
                 </Button>
               </div>
             </form>
@@ -397,7 +396,7 @@ export default function StarsPrediction() {
               <div className="result-badge-top">
                 <span className="inference-status-tag-amber">
                   <CheckCircle2 size={14} />
-                  <span>Regression Success</span>
+                  <span>Estimate Complete</span>
                 </span>
                 {savedToHistory && (
                   <span className="inference-status-tag-amber font-mono" style={{ background: 'rgba(168, 85, 247, 0.12)', borderColor: 'rgba(168, 85, 247, 0.3)', color: '#c084fc' }}>
@@ -406,19 +405,19 @@ export default function StarsPrediction() {
                   </span>
                 )}
                 <span className="latency-badge font-mono">
-                  {result.latencyMs}ms roundtrip
+                  {result.latencyMs}ms response time
                 </span>
               </div>
 
               <div className="stars-result-main">
-                <span className="result-label-sub">Predicted GitHub Stars</span>
+                <span className="result-label-sub">Estimated Stars</span>
                 <div className="stars-number-display">
                   <Star size={32} className="stars-icon-glow" />
                   <span className="stars-value font-mono">
                     {Number(result.predicted_stars).toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 2 })}
                   </span>
                 </div>
-                <span className="stars-unit-text font-mono">Estimated Community Star Volume</span>
+                <span className="stars-unit-text font-mono">Estimated Community Star Count</span>
 
                 <div className={`tier-pill font-mono ${tier?.badgeClass}`}>
                   {tier?.name}
@@ -426,12 +425,12 @@ export default function StarsPrediction() {
               </div>
 
               <div className="tier-description-box">
-                <h4 className="box-title">Ecosystem Standing</h4>
+                <h4 className="box-title">Popularity Tier</h4>
                 <p className="box-content">
                   {tier?.desc}
                 </p>
                 <div className="computed-length-metric font-mono">
-                  Transmitted <code>repository_name_length</code>: <strong>{result.repository_name_length}</strong>
+                  Repository: <strong>{result.payload?.repository_owner}/{result.payload?.repository_name}</strong>
                 </div>
               </div>
 
@@ -442,15 +441,15 @@ export default function StarsPrediction() {
                   className="accordion-toggle-btn"
                   onClick={() => setShowRawPayload(!showRawPayload)}
                 >
-                  <span>Inspect Exact API Response & Payload</span>
+                  <span>View Technical Details</span>
                   {showRawPayload ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                 </button>
 
                 {showRawPayload && (
                   <div className="raw-json-block font-mono">
-                    <div className="json-sub-header">FastAPI Response:</div>
+                    <div className="json-sub-header">Prediction Details:</div>
                     <pre>{JSON.stringify({ predicted_stars: result.predicted_stars }, null, 2)}</pre>
-                    <div className="json-sub-header" style={{ marginTop: '0.75rem' }}>Transmitted Payload (7 fields):</div>
+                    <div className="json-sub-header" style={{ marginTop: '0.75rem' }}>Submitted Information:</div>
                     <pre>{JSON.stringify(result.payload, null, 2)}</pre>
                   </div>
                 )}
@@ -461,15 +460,15 @@ export default function StarsPrediction() {
               <div className="placeholder-icon-circle" style={{ color: 'var(--accent-amber)' }}>
                 <Star size={36} />
               </div>
-              <h3 className="placeholder-title">Awaiting Repository Input</h3>
+              <h3 className="placeholder-title">Ready for Your Input</h3>
               <p className="placeholder-desc">
-                Specify the repository owner, repository name, license, and forks, or choose a preset to evaluate
-                the K-Nearest Neighbors regression model.
+                Specify the repository owner, name, license, and forks, or choose a sample repository above
+                to see an estimated star count.
               </p>
               <div className="supported-agents-pill-list">
-                <span className="supported-label font-mono">Model Dimensions:</span>
+                <span className="supported-label font-mono">Benchmark Scale:</span>
                 <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)' }}>
-                  416,751 Sparse Features • k = 5
+                  Trained on 260,000+ open-source GitHub repositories
                 </span>
               </div>
             </GlassCard>

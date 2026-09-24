@@ -15,7 +15,7 @@ export default function ProtectedRoute({ children }) {
         <GlassCard className="auth-loading-card">
           <Loader2 size={36} className="auth-loading-spinner" />
           <h3 className="auth-loading-title">Verifying Session...</h3>
-          <p className="auth-loading-sub">Connecting to Firebase authentication services.</p>
+          <p className="auth-loading-sub">Checking your account credentials...</p>
         </GlassCard>
       </div>
     );

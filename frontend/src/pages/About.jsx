@@ -86,26 +86,62 @@ export default function About() {
         <div className="about-header">
           <div className="about-badge">
             <BookOpen size={14} />
-            <span>Architecture & Methodology</span>
+            <span>Platform Overview & Research</span>
           </div>
           <h1 className="about-title">
-            Engineering Telemetry & <span className="gradient-text">Predictive ML Architecture</span>
+            About AI-SE <span className="gradient-text">Analytics</span>
           </h1>
           <p className="about-subtitle">
-            An empirical investigation into software engineering workflows, AI coding agent adoption,
-            and software repository growth metrics using large-scale machine learning pipelines.
+            An intelligent platform designed to help developers, students, and teams understand software development workflows, recognize AI coding assistants, and estimate repository popularity.
           </p>
         </div>
 
-        {/* The 5 ML Problems Overview */}
+        {/* User Guide Section: What Can I Do, What Do I Enter, What Will I Get */}
+        <section className="about-section">
+          <h2 className="section-heading">
+            <CheckCircle2 size={22} className="heading-icon" style={{ color: 'var(--accent-cyan)' }} />
+            <span>How This Platform Helps You</span>
+          </h2>
+          <div className="problems-grid" style={{ marginBottom: '2.5rem' }}>
+            <GlassCard className="problem-card problem-card-active">
+              <h3 className="problem-title">What Can You Predict?</h3>
+              <p className="problem-desc">
+                Identify which AI coding assistant (such as Claude Code, Cursor, Devin, or GitHub Copilot) was used on a pull request, and estimate how popular a GitHub repository might become.
+              </p>
+            </GlassCard>
+
+            <GlassCard className="problem-card problem-card-active">
+              <h3 className="problem-title">What Do You Enter?</h3>
+              <p className="problem-desc">
+                Basic details about your project or contribution—such as pull request titles and descriptions, programming language, software license, and fork numbers. No complex setup required.
+              </p>
+            </GlassCard>
+
+            <GlassCard className="problem-card problem-card-active">
+              <h3 className="problem-title">What Will You Get?</h3>
+              <p className="problem-desc">
+                Instant predictions backed by high-confidence analysis, understandable popularity tiers, and a private prediction history saved securely to your account.
+              </p>
+            </GlassCard>
+
+            <GlassCard className="problem-card problem-card-active">
+              <h3 className="problem-title">Why Is This Useful?</h3>
+              <p className="problem-desc">
+                Understand AI tool adoption across developer communities, compare software project characteristics, and gain insights into modern software engineering trends.
+              </p>
+            </GlassCard>
+          </div>
+        </section>
+
+        {/* The 5 Research Problem Statements Overview */}
         <section className="about-section">
           <h2 className="section-heading">
             <Layers size={22} className="heading-icon" />
-            <span>The Five Machine Learning Problem Statements</span>
+            <span>Project Problem Statements & Capabilities</span>
           </h2>
           <p className="section-lead">
-            The project research framework established five core machine learning objectives. In the current production release,
-            <strong> Problems 1 and 2</strong> are trained, validated, saved, and served live via the FastAPI backend on Render.
+            The project research framework established five core problem statements. In this release,
+            <strong> Tools 1 and 2</strong> are active and available live, while Tools 3, 4, and 5 represent ongoing research areas.
           </p>
 
           <div className="problems-grid">
@@ -142,12 +178,15 @@ export default function About() {
           </div>
         </section>
 
-        {/* Feature Engineering Deep Dive */}
+        {/* Feature Engineering Deep Dive for Technical Review */}
         <section className="about-section">
           <h2 className="section-heading">
             <Cpu size={22} className="heading-icon" />
-            <span>Production Feature Engineering & Preprocessing</span>
+            <span>For Technical Review: Architecture & Feature Engineering</span>
           </h2>
+          <p className="section-lead" style={{ marginBottom: '1.5rem' }}>
+            Detailed specifications of the machine learning pipeline, text vectorization, and sparse matrices for academic and technical evaluation.
+          </p>
 
           <div className="pipeline-grid">
             <GlassCard className="pipeline-card">

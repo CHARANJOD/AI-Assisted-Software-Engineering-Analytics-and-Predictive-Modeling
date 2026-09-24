@@ -18,8 +18,8 @@ const apiClient = axios.create({
 export function parseApiError(error) {
   if (error.code === 'ECONNABORTED' || error.message?.includes('timeout')) {
     return {
-      title: 'Backend Request Timeout',
-      message: 'The serverless ML instance is taking longer than usual to wake up (Render cold-start). Please wait a moment and try again.',
+      title: 'Request Timed Out',
+      message: 'The cloud service is taking longer than usual to respond. Please wait a moment and try again.',
       isTimeout: true
     };
   }
@@ -28,29 +28,29 @@ export function parseApiError(error) {
     const status = error.response.status;
     const data = error.response.data;
 
-    // Pydantic 422 validation error
+    // Input validation error
     if (status === 422 && data?.detail) {
       const messages = Array.isArray(data.detail)
-        ? data.detail.map(d => `${d.loc ? d.loc.join('.') : 'Field'}: ${d.msg}`).join(', ')
-        : JSON.stringify(data.detail);
+        ? data.detail.map(d => `${d.loc ? d.loc[d.loc.length - 1] : 'Field'}: ${d.msg}`).join(', ')
+        : 'Please check your inputs and try again.';
 
       return {
-        title: 'Validation Error (422)',
+        title: 'Please Check Your Input',
         message: messages,
         isValidation: true
       };
     }
 
     return {
-      title: `Server Error (${status})`,
-      message: data?.message || data?.detail || 'An unexpected backend error occurred.',
+      title: 'Service Notice',
+      message: data?.message || data?.detail || "We're unable to process your request right now. Please try again.",
       isServerError: true
     };
   }
 
   return {
-    title: 'Network Error',
-    message: error.message || 'Unable to connect to the prediction API backend. Please check your connection.',
+    title: 'Connection Issue',
+    message: "We're unable to connect to the prediction service right now. Please check your internet connection and try again.",
     isNetwork: true
   };
 }

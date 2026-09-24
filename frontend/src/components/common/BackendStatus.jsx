@@ -47,25 +47,25 @@ export default function BackendStatus({ className = '' }) {
       case 'online':
         return {
           type: 'online',
-          text: `ML Backend Online ${latency ? `(${latency}ms)` : ''}`,
+          text: `Service Ready ${latency ? `(${latency}ms)` : ''}`,
           pulse: true
         };
       case 'warming':
         return {
           type: 'warming',
-          text: 'Waking up Render backend...',
+          text: 'Connecting to service (warming up)...',
           pulse: true
         };
       case 'offline':
         return {
           type: 'offline',
-          text: 'Backend Unreachable',
+          text: 'Service Unavailable',
           pulse: false
         };
       default:
         return {
           type: 'warming',
-          text: 'Checking backend...',
+          text: 'Checking service...',
           pulse: true
         };
     }
@@ -84,8 +84,8 @@ export default function BackendStatus({ className = '' }) {
         type="button"
         className={`status-refresh-btn ${isRetrying ? 'spinning' : ''}`}
         onClick={checkStatus}
-        title="Refresh backend status"
-        aria-label="Refresh backend status"
+        title="Refresh service status"
+        aria-label="Refresh service status"
       >
         <RefreshCw size={13} />
       </button>

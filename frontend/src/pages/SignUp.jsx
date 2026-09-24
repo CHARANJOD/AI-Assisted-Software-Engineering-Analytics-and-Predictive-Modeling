@@ -86,7 +86,7 @@ export default function SignUp() {
             Create <span className="gradient-text-purple">Account</span>
           </h2>
           <p className="auth-subtitle">
-            Sign up to access models, telemetry benchmarks, and prediction history
+            Sign up to save predictions and explore development analytics
           </p>
         </div>
 
@@ -95,9 +95,9 @@ export default function SignUp() {
           <div className="firebase-notice-banner">
             <ShieldAlert size={18} className="notice-icon" />
             <div className="notice-text">
-              <strong>Firebase Configuration Pending</strong>
+              <strong>Authentication Setup Notice</strong>
               <span>
-                To enable live user registration, configure your Firebase project API keys in <code>frontend/.env</code>.
+                To enable live user registration, service credentials need to be configured in <code>frontend/.env</code>.
               </span>
             </div>
           </div>
@@ -114,7 +114,7 @@ export default function SignUp() {
         {/* Sign Up Form */}
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="auth-input-group">
-            <label htmlFor="signup-name" className="auth-label">Full Name / Developer Handle</label>
+            <label htmlFor="signup-name" className="auth-label">Full Name</label>
             <div className="input-with-icon">
               <User size={16} className="field-icon" />
               <input
@@ -142,7 +142,7 @@ export default function SignUp() {
                 id="signup-email"
                 required
                 disabled={submitting || googleSubmitting}
-                placeholder="developer@example.com"
+                placeholder="you@example.com"
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
@@ -202,7 +202,7 @@ export default function SignUp() {
             disabled={submitting || googleSubmitting || !isFirebaseConfigured}
             style={{ width: '100%', marginTop: '0.5rem' }}
           >
-            {submitting ? 'Creating Account...' : 'Complete Registration'}
+            {submitting ? 'Creating Account...' : 'Create Account'}
           </Button>
         </form>
 

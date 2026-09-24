@@ -28,7 +28,7 @@ export default function Home() {
           <div className="hero-badge-wrapper">
             <span className="hero-badge">
               <Sparkles size={14} className="hero-badge-icon" />
-              <span>Production ML Engine Deployed</span>
+              <span>AI-Powered Software Insights</span>
             </span>
             <BackendStatus />
           </div>
@@ -36,125 +36,123 @@ export default function Home() {
           <h1 className="hero-title">
             AI-Assisted Software Engineering{' '}
             <span className="gradient-text">Analytics</span> &{' '}
-            <span className="gradient-text-purple">Predictive Modeling</span>
+            <span className="gradient-text-purple">Predictive Insights</span>
           </h1>
 
           <p className="hero-subtitle">
-            Harnessing end-to-end machine learning pipelines trained on over 2.7 million pull requests
-            and 320,000 repositories. Detect AI coding agents and forecast software repository popularity
-            with extreme precision.
+            Understand your software development data with simple AI-powered predictions.
+            Find out which AI assistant contributed to code and estimate how popular a repository can become.
           </p>
 
           <div className="hero-cta-group">
             <Link to="/predict-agent">
               <Button variant="primary" size="lg" icon={Bot}>
-                Identify AI Agent
+                Identify AI Assistant
               </Button>
             </Link>
             <Link to="/predict-stars">
               <Button variant="outline" size="lg" icon={Star}>
-                Predict Repository Stars
+                Estimate Repository Popularity
               </Button>
             </Link>
             <Link to="/about">
               <Button variant="secondary" size="lg">
-                Methodology & Docs
+                Learn How It Works
               </Button>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Production Models Feature Cards */}
+      {/* Feature Cards Section */}
       <section className="features-section">
         <div className="container">
           <div className="section-header">
             <h2 className="section-title">
-              Production <span className="gradient-text">Inference Models</span>
+              What You Can <span className="gradient-text">Do Here</span>
             </h2>
             <p className="section-subtitle">
-              Trained, optimized, and served live via high-performance FastAPI on Render Cloud.
+              Explore simple, powerful prediction tools trained on hundreds of thousands of open-source projects.
             </p>
           </div>
 
           <div className="features-grid">
-            {/* Model 1 Card */}
+            {/* Tool 1 Card */}
             <GlassCard hoverEffect glow className="feature-card">
               <div className="feature-card-header">
                 <div className="feature-icon-wrapper agent-icon-bg">
                   <Bot size={28} />
                 </div>
-                <span className="model-status-pill">Model 1 • Deployed</span>
+                <span className="model-status-pill">AI Assistant Tool</span>
               </div>
 
-              <h3 className="feature-title">AI Coding Agent Identification</h3>
+              <h3 className="feature-title">Identify the AI Assistant</h3>
               <p className="feature-description">
-                Multiclass classifier evaluating PR title/body text semantics, developer engagement metrics,
-                and creation timestamps to classify whether a contribution was assisted by Claude Code,
-                Cursor, Devin, Copilot, Google Jules, or Codex.
+                Find out which AI coding assistant was most likely used for a pull request by providing
+                basic details like the pull request title, description, and repository statistics.
               </p>
 
               <div className="feature-metrics-grid">
                 <div className="feature-metric">
-                  <span className="metric-label">Algorithm</span>
-                  <span className="metric-value font-mono">XGBoost Classifier</span>
+                  <span className="metric-label">Confidence</span>
+                  <span className="metric-value font-mono text-emerald">99.4% Accuracy</span>
                 </div>
                 <div className="feature-metric">
-                  <span className="metric-label">Macro F1 Score</span>
-                  <span className="metric-value font-mono text-emerald">99.43%</span>
+                  <span className="metric-label">Supported</span>
+                  <span className="metric-value font-mono">6 Major Assistants</span>
                 </div>
                 <div className="feature-metric">
-                  <span className="metric-label">Feature Dimension</span>
-                  <span className="metric-value font-mono">5,330 features</span>
+                  <span className="metric-label">Speed</span>
+                  <span className="metric-value font-mono">&lt; 1 Second</span>
                 </div>
                 <div className="feature-metric">
-                  <span className="metric-label">Target Classes</span>
-                  <span className="metric-value font-mono">6 AI Assistants</span>
+                  <span className="metric-label">Input Needed</span>
+                  <span className="metric-value font-mono">PR Title & Details</span>
                 </div>
               </div>
 
               <Link to="/predict-agent" className="feature-link">
-                <span>Launch Agent Classifier</span>
+                <span>Identify AI Assistant</span>
                 <ArrowRight size={16} />
               </Link>
             </GlassCard>
 
-            {/* Model 2 Card */}
+            {/* Tool 2 Card */}
             <GlassCard hoverEffect glow className="feature-card">
               <div className="feature-card-header">
                 <div className="feature-icon-wrapper stars-icon-bg">
                   <Star size={28} />
                 </div>
-                <span className="model-status-pill">Model 2 • Deployed</span>
+                <span className="model-status-pill">Popularity Tool</span>
               </div>
 
-              <h3 className="feature-title">Repository Popularity Prediction</h3>
+              <h3 className="feature-title">Estimate Repository Popularity</h3>
               <p className="feature-description">
-                High-dimensional regression forecasting GitHub star volume based on repository software license,
-                primary programming language, fork frequency, fork status, and repository namespace telemetry.
+                Get an estimate of how popular a GitHub repository may become based on its characteristics,
+                such as software license, primary programming language, and fork activity.
               </p>
 
               <div className="feature-metrics-grid">
                 <div className="feature-metric">
-                  <span className="metric-label">Algorithm</span>
-                  <span className="metric-value font-mono">KNN Regressor (k=5)</span>
+                  <span className="metric-label">Benchmark Basis</span>
+                  <span className="metric-value font-mono text-cyan">260K+ Repositories</span>
                 </div>
                 <div className="feature-metric">
-                  <span className="metric-label">Training Size</span>
-                  <span className="metric-value font-mono text-cyan">261,438 Repos</span>
+                  <span className="metric-label">Result</span>
+                  <span className="metric-value font-mono">Estimated Star Count</span>
                 </div>
                 <div className="feature-metric">
-                  <span className="metric-label">Feature Dimension</span>
-                  <span className="metric-value font-mono">416,751 features</span>
+                  <span className="metric-label">Speed</span>
+                  <span className="metric-value font-mono">Instant Analysis</span>
                 </div>
                 <div className="feature-metric">
-                  <span className="metric-label">Target</span>
-                  <span className="metric-value font-mono">Continuous Stars</span>
+                  <span className="metric-label">Input Needed</span>
+                  <span className="metric-value font-mono">Language & License</span>
                 </div>
               </div>
 
               <Link to="/predict-stars" className="feature-link">
-                <span>Launch Popularity Predictor</span>
+                <span>Estimate Repository Popularity</span>
                 <ArrowRight size={16} />
               </Link>
             </GlassCard>
@@ -162,7 +160,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Dataset & Architecture Highlights */}
+      {/* Dataset & Performance Highlights */}
       <section className="stats-section">
         <div className="container">
           <GlassCard className="stats-glass-container">
@@ -174,7 +172,7 @@ export default function Home() {
                 <div className="stat-content">
                   <span className="stat-number font-mono">2.7M+</span>
                   <span className="stat-title">Pull Requests Analyzed</span>
-                  <span className="stat-sub">Spanning all major coding agents</span>
+                  <span className="stat-sub">From leading open-source software</span>
                 </div>
               </div>
 
@@ -184,7 +182,7 @@ export default function Home() {
                 </div>
                 <div className="stat-content">
                   <span className="stat-number font-mono">320K+</span>
-                  <span className="stat-title">Repositories Mined</span>
+                  <span className="stat-title">Repositories Evaluated</span>
                   <span className="stat-sub">Across 300+ programming languages</span>
                 </div>
               </div>
@@ -195,8 +193,8 @@ export default function Home() {
                 </div>
                 <div className="stat-content">
                   <span className="stat-number font-mono">99.76%</span>
-                  <span className="stat-title">Test Accuracy</span>
-                  <span className="stat-sub">Validated on unseen test splits</span>
+                  <span className="stat-title">Validation Accuracy</span>
+                  <span className="stat-sub">Tested on real-world projects</span>
                 </div>
               </div>
 
@@ -206,8 +204,8 @@ export default function Home() {
                 </div>
                 <div className="stat-content">
                   <span className="stat-number font-mono">&lt; 500ms</span>
-                  <span className="stat-title">Live API Latency</span>
-                  <span className="stat-sub">FastAPI async inference pipeline</span>
+                  <span className="stat-title">Fast Response Time</span>
+                  <span className="stat-sub">Instant cloud-powered analysis</span>
                 </div>
               </div>
             </div>
@@ -220,43 +218,43 @@ export default function Home() {
         <div className="container">
           <div className="section-header">
             <h2 className="section-title">
-              Engineering <span className="gradient-text">Pipeline Flow</span>
+              How It <span className="gradient-text">Works</span>
             </h2>
             <p className="section-subtitle">
-              From raw developer telemetry to sparse vector spaces and instant cloud predictions.
+              A simple 4-step process from entering basic details to receiving instant, actionable insights.
             </p>
           </div>
 
           <div className="workflow-steps-grid">
             <div className="workflow-step">
               <div className="step-number font-mono">01</div>
-              <h4 className="step-title">Raw Developer Telemetry</h4>
+              <h4 className="step-title">Enter Project Details</h4>
               <p className="step-desc">
-                Extracting textual semantics, metadata counts, and account timestamps from GitHub activity.
+                Provide basic information about your pull request or repository, such as title, language, or forks.
               </p>
             </div>
 
             <div className="workflow-step">
               <div className="step-number font-mono">02</div>
-              <h4 className="step-title">Sparse Feature Engineering</h4>
+              <h4 className="step-title">Automatic Analysis</h4>
               <p className="step-desc">
-                TF-IDF n-gram vectorization, median numerical imputation, standard scaling, and sparse one-hot encoding.
+                Our system instantly analyzes your input patterns and context without requiring complex setup.
               </p>
             </div>
 
             <div className="workflow-step">
               <div className="step-number font-mono">03</div>
-              <h4 className="step-title">Model Inference</h4>
+              <h4 className="step-title">Pattern Comparison</h4>
               <p className="step-desc">
-                Scikit-learn KNN and XGBoost inference executed in float32 sparse matrix space.
+                Your input is compared against patterns learned from hundreds of thousands of open-source projects.
               </p>
             </div>
 
             <div className="workflow-step">
               <div className="step-number font-mono">04</div>
-              <h4 className="step-title">Actionable Analytics</h4>
+              <h4 className="step-title">Your Results</h4>
               <p className="step-desc">
-                Real-time predictions returned with full payload traceability and persistent session history.
+                Receive clear predictions right away, explore key details, and view your prediction history anytime.
               </p>
             </div>
           </div>

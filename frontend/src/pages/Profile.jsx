@@ -90,13 +90,13 @@ export default function Profile() {
       <div className="profile-header">
         <div className="profile-badge">
           <ShieldCheck size={14} />
-          <span>Authenticated Account</span>
+          <span>Account Overview</span>
         </div>
         <h1 className="profile-title">
           User <span className="gradient-text">Profile</span>
         </h1>
         <p className="profile-subtitle">
-          Manage your authenticated identity, security credentials, and Firestore-isolated profile data.
+          Manage your account details and view your available prediction tools.
         </p>
       </div>
 
@@ -115,12 +115,12 @@ export default function Profile() {
           </div>
 
           <h2 className="user-display-name">
-            {firestoreProfile?.displayName || user?.displayName || 'Anonymous Developer'}
+            {firestoreProfile?.displayName || user?.displayName || 'User'}
           </h2>
           <span className="user-email font-mono">{firestoreProfile?.email || user?.email || 'No email associated'}</span>
 
           <div className="user-provider-tag font-mono">
-            <span>Provider:</span>
+            <span>Sign-in Method:</span>
             <strong>{providerName}</strong>
           </div>
 
@@ -132,25 +132,17 @@ export default function Profile() {
               onClick={handleLogout}
               style={{ width: '100%', borderColor: 'rgba(244, 63, 94, 0.4)', color: '#fda4af' }}
             >
-              Sign Out of Session
+              Sign Out
             </Button>
           </div>
         </GlassCard>
 
-        {/* Details & Telemetry */}
+        {/* Details & Information */}
         <div className="profile-details-col">
           <GlassCard className="details-card">
-            <h3 className="details-card-title">Security & Identity Credentials</h3>
+            <h3 className="details-card-title">Account Information</h3>
             
             <div className="metadata-rows font-mono">
-              <div className="metadata-row">
-                <span className="meta-label">
-                  <Key size={14} className="meta-row-icon" />
-                  <span>Unique ID (UID):</span>
-                </span>
-                <span className="meta-value uid-badge">{user?.uid || 'Not available'}</span>
-              </div>
-
               <div className="metadata-row">
                 <span className="meta-label">
                   <Mail size={14} className="meta-row-icon" />
@@ -176,44 +168,45 @@ export default function Profile() {
               <div className="metadata-row">
                 <span className="meta-label">
                   <Clock size={14} className="meta-row-icon" />
-                  <span>Last Authentication:</span>
+                  <span>Last Sign In:</span>
                 </span>
                 <span className="meta-value">{lastLogin}</span>
               </div>
             </div>
           </GlassCard>
 
-          {/* Firestore Data Card */}
+          {/* Account Storage & Status Card */}
           <GlassCard className="details-card">
             <h3 className="details-card-title" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <Database size={18} style={{ color: 'var(--accent-violet)' }} />
-              <span>Cloud Firestore Profile Metadata</span>
+              <span>Storage & Account Status</span>
             </h3>
 
             <div className="metadata-rows font-mono">
               <div className="metadata-row">
                 <span className="meta-label">
-                  <span>Document Path:</span>
+                  <span>Account Status:</span>
                 </span>
-                <span className="meta-value uid-badge" style={{ color: '#c4b5fd' }}>
-                  users/{user?.uid || 'uid'}
+                <span className="meta-value" style={{ color: 'var(--accent-emerald)', display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
+                  <CheckCircle2 size={13} />
+                  <span>Active & Verified</span>
                 </span>
               </div>
 
               <div className="metadata-row">
                 <span className="meta-label">
-                  <span>Sync Status:</span>
+                  <span>Prediction Storage:</span>
                 </span>
                 <span className="meta-value">
                   {isFirebaseConfigured ? (
                     <span style={{ color: 'var(--accent-emerald)', display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
                       <CheckCircle2 size={13} />
-                      <span>Document Partition Active</span>
+                      <span>Cloud Sync Enabled</span>
                     </span>
                   ) : (
                     <span style={{ color: 'var(--accent-amber)', display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
                       <AlertCircle size={13} />
-                      <span>Awaiting Firebase Env Keys</span>
+                      <span>Local Session Storage</span>
                     </span>
                   )}
                 </span>
@@ -221,19 +214,10 @@ export default function Profile() {
 
               <div className="metadata-row">
                 <span className="meta-label">
-                  <span>Prediction Subcollection:</span>
-                </span>
-                <span className="meta-value uid-badge" style={{ color: '#67e8f9' }}>
-                  users/{user?.uid || 'uid'}/predictions
-                </span>
-              </div>
-
-              <div className="metadata-row">
-                <span className="meta-label">
-                  <span>Data Isolation:</span>
+                  <span>Privacy:</span>
                 </span>
                 <span className="meta-value" style={{ color: 'var(--accent-emerald)' }}>
-                  Enforced by UID Security Rules
+                  Private to Your Account
                 </span>
               </div>
             </div>
@@ -241,18 +225,18 @@ export default function Profile() {
 
           {/* Quick Access Card */}
           <GlassCard className="quick-access-card">
-            <h3 className="details-card-title">Production Inference Access</h3>
+            <h3 className="details-card-title">Your Available Prediction Tools</h3>
             <p className="quick-access-desc">
-              Your account has full authenticated clearance to execute both production machine learning models:
+              Your account has full access to both prediction tools:
             </p>
             <div className="quick-model-links">
               <Link to="/predict-agent" className="quick-model-pill">
                 <Bot size={16} style={{ color: 'var(--accent-cyan)' }} />
-                <span>AI Coding Agent Classifier (XGBoost)</span>
+                <span>Identify AI Assistant</span>
               </Link>
               <Link to="/predict-stars" className="quick-model-pill">
                 <Star size={16} style={{ color: 'var(--accent-amber)' }} />
-                <span>Repository Popularity Forecaster (KNN)</span>
+                <span>Estimate Repository Popularity</span>
               </Link>
             </div>
           </GlassCard>

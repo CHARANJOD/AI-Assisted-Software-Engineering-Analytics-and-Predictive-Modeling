@@ -95,15 +95,15 @@ export default function AgentPrediction() {
 
   const validateForm = () => {
     if (!formData.title.trim()) {
-      setError({ title: 'Validation Error', message: 'Pull Request title is required.' });
+      setError({ title: 'Please Check Your Input', message: 'Pull Request title is required.' });
       return false;
     }
     if (!formData.body.trim()) {
-      setError({ title: 'Validation Error', message: 'Pull Request body description is required.' });
+      setError({ title: 'Please Check Your Input', message: 'Pull Request description is required.' });
       return false;
     }
     if (!formData.language) {
-      setError({ title: 'Validation Error', message: 'Please select a programming language.' });
+      setError({ title: 'Please Check Your Input', message: 'Please select a programming language.' });
       return false;
     }
     return true;
@@ -151,14 +151,13 @@ export default function AgentPrediction() {
         <div>
           <div className="page-pre-title">
             <Bot size={16} />
-            <span>Model 1 Inference • XGBoost 99.4% F1</span>
+            <span>AI Assistant Identification • High Accuracy</span>
           </div>
           <h1 className="page-main-title">
-            AI Coding Agent <span className="gradient-text">Identification</span>
+            Identify the AI <span className="gradient-text">Assistant</span>
           </h1>
           <p className="page-lead-desc">
-            Analyze pull request text semantics, repository popularity, and author timestamps to determine
-            which frontier AI assistant authored or assisted with the contribution.
+            Enter information about a pull request and we'll estimate which AI coding assistant was most likely used.
           </p>
         </div>
         <BackendStatus />
@@ -168,7 +167,7 @@ export default function AgentPrediction() {
       <div className="preset-bar">
         <span className="preset-bar-label">
           <Sparkles size={15} />
-          <span>Test with Presets:</span>
+          <span>Try a Sample Pull Request:</span>
         </span>
         <div className="preset-chips">
           {AGENT_PRESETS.map((preset) => (
@@ -195,8 +194,8 @@ export default function AgentPrediction() {
         <div className="cold-start-banner pulse">
           <Clock size={18} className="cold-start-icon" />
           <div className="cold-start-text">
-            <strong>Waking up serverless ML instance on Render...</strong>
-            <span>Free-tier compute instances spin down after inactivity. The initial inference may take up to 60-90 seconds. Please wait.</span>
+            <strong>Connecting to our analysis service...</strong>
+            <span>The cloud service may take a minute to wake up if it has not been active recently. Thank you for your patience!</span>
           </div>
         </div>
       )}
@@ -206,7 +205,7 @@ export default function AgentPrediction() {
         <div className="error-alert">
           <AlertCircle size={20} className="error-icon" />
           <div className="error-content">
-            <h4>{error.title || 'Inference Error'}</h4>
+            <h4>{error.title || 'Prediction Notice'}</h4>
             <p>{error.message}</p>
           </div>
         </div>
@@ -218,11 +217,11 @@ export default function AgentPrediction() {
         <div className="form-column">
           <GlassCard className="prediction-form-card">
             <form onSubmit={handleSubmit} className="agent-form">
-              {/* Section 1: Pull Request Semantics */}
+              {/* Section 1: Pull Request Information */}
               <div className="form-section">
                 <h3 className="form-section-title">
                   <Code2 size={18} />
-                  <span>Pull Request Text Content</span>
+                  <span>Pull Request Details</span>
                 </h3>
 
                 <div className="input-field-group">
@@ -234,7 +233,7 @@ export default function AgentPrediction() {
                     type="text"
                     id="title"
                     required
-                    placeholder="e.g. feat(api): implement JWT token authentication and user verification"
+                    placeholder="e.g. feat(api): implement user verification and token refresh"
                     value={formData.title}
                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                     className="text-input"
@@ -243,14 +242,14 @@ export default function AgentPrediction() {
 
                 <div className="input-field-group">
                   <div className="label-row">
-                    <label htmlFor="body" className="input-label">Pull Request Description / Body *</label>
+                    <label htmlFor="body" className="input-label">Pull Request Description *</label>
                     <span className="char-count font-mono">{formData.body.length} chars</span>
                   </div>
                   <textarea
                     id="body"
                     required
                     rows={6}
-                    placeholder="e.g. Added JWT token generator, updated auth middleware, created unit test suite covering token expiration..."
+                    placeholder="e.g. Added user token generator, updated middleware, created test suite covering token expiration..."
                     value={formData.body}
                     onChange={(e) => setFormData({ ...formData, body: e.target.value })}
                     className="text-input text-area"
@@ -258,11 +257,11 @@ export default function AgentPrediction() {
                 </div>
               </div>
 
-              {/* Section 2: Repository Attributes */}
+              {/* Section 2: Repository Details */}
               <div className="form-section">
                 <h3 className="form-section-title">
                   <GitFork size={18} />
-                  <span>Repository Context</span>
+                  <span>Repository Details</span>
                 </h3>
 
                 <div className="input-row-2col">
@@ -279,7 +278,7 @@ export default function AgentPrediction() {
                           <option key={lang} value={lang}>{lang}</option>
                         ))}
                       </optgroup>
-                      <optgroup label="All Supported Model Languages (316)">
+                      <optgroup label="All Supported Languages (316)">
                         {ALL_LANGUAGES.map((lang) => (
                           <option key={lang} value={lang}>{lang}</option>
                         ))}
@@ -288,7 +287,7 @@ export default function AgentPrediction() {
                   </div>
 
                   <div className="input-field-group toggle-group">
-                    <label className="input-label">Is Forked Repository?</label>
+                    <label className="input-label">Is this a Forked Repository?</label>
                     <div className="toggle-switch-wrapper">
                       <label className="switch">
                         <input
@@ -299,7 +298,7 @@ export default function AgentPrediction() {
                         <span className="slider round"></span>
                       </label>
                       <span className="toggle-state-text font-mono">
-                        {formData.is_forked ? 'true (Fork)' : 'false (Root)'}
+                        {formData.is_forked ? 'Yes (Fork)' : 'No (Original)'}
                       </span>
                     </div>
                   </div>
@@ -336,11 +335,11 @@ export default function AgentPrediction() {
                 </div>
               </div>
 
-              {/* Section 3: User & Timestamps */}
+              {/* Section 3: Author & Timeline Details */}
               <div className="form-section">
                 <h3 className="form-section-title">
                   <Users size={18} />
-                  <span>Developer & Temporal Telemetry</span>
+                  <span>Author & Timeline Details</span>
                 </h3>
 
                 <div className="input-row-2col">
@@ -375,7 +374,7 @@ export default function AgentPrediction() {
 
                 <div className="input-row-2col">
                   <div className="input-field-group">
-                    <label htmlFor="created_at" className="input-label">PR Created Date-Time *</label>
+                    <label htmlFor="created_at" className="input-label">Pull Request Date & Time *</label>
                     <input
                       type="datetime-local"
                       id="created_at"
@@ -387,7 +386,7 @@ export default function AgentPrediction() {
                   </div>
 
                   <div className="input-field-group">
-                    <label htmlFor="user_created_at" className="input-label">User Account Created *</label>
+                    <label htmlFor="user_created_at" className="input-label">Author Account Created Date *</label>
                     <input
                       type="datetime-local"
                       id="user_created_at"
@@ -410,7 +409,7 @@ export default function AgentPrediction() {
                   loading={loading}
                   style={{ width: '100%' }}
                 >
-                  {loading ? 'Executing Inference...' : 'Predict AI Coding Agent'}
+                  {loading ? 'Analyzing Your Information...' : 'Identify AI Assistant'}
                 </Button>
               </div>
             </form>
@@ -424,7 +423,7 @@ export default function AgentPrediction() {
               <div className="result-badge-top">
                 <span className="inference-status-tag">
                   <CheckCircle2 size={14} />
-                  <span>Inference Success</span>
+                  <span>Analysis Complete</span>
                 </span>
                 {savedToHistory && (
                   <span className="inference-status-tag font-mono" style={{ background: 'rgba(168, 85, 247, 0.12)', borderColor: 'rgba(168, 85, 247, 0.3)', color: '#c084fc' }}>
@@ -433,12 +432,12 @@ export default function AgentPrediction() {
                   </span>
                 )}
                 <span className="latency-badge font-mono">
-                  {result.latencyMs}ms roundtrip
+                  {result.latencyMs}ms response time
                 </span>
               </div>
 
               <div className="result-main">
-                <span className="result-label-sub">Predicted AI Coding Agent</span>
+                <span className="result-label-sub">Likely AI Assistant</span>
                 <h2
                   className="result-agent-name"
                   style={{ color: predictedProfile?.color || 'var(--accent-cyan)' }}
@@ -458,12 +457,12 @@ export default function AgentPrediction() {
               </div>
 
               <div className="agent-description-box">
-                <h4 className="box-title">Agent Profile & Workflow Signature</h4>
+                <h4 className="box-title">About this Assistant</h4>
                 <p className="box-content">
-                  {predictedProfile?.description || 'Classified based on PR vocabulary, developer metrics, and timing signatures.'}
+                  {predictedProfile?.description || 'Classified based on pull request writing style, details, and project timing.'}
                 </p>
                 <div className="company-badge font-mono">
-                  Origin: <span>{predictedProfile?.company || 'Verified Frontier Model'}</span>
+                  Created By: <span>{predictedProfile?.company || 'Verified Frontier Model'}</span>
                 </div>
               </div>
 
@@ -474,15 +473,15 @@ export default function AgentPrediction() {
                   className="accordion-toggle-btn"
                   onClick={() => setShowRawPayload(!showRawPayload)}
                 >
-                  <span>Inspect Exact API Response & Payload</span>
+                  <span>View Technical Details</span>
                   {showRawPayload ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                 </button>
 
                 {showRawPayload && (
                   <div className="raw-json-block font-mono">
-                    <div className="json-sub-header">FastAPI Response:</div>
+                    <div className="json-sub-header">Prediction Output:</div>
                     <pre>{JSON.stringify({ predicted_agent: result.predicted_agent }, null, 2)}</pre>
-                    <div className="json-sub-header" style={{ marginTop: '0.75rem' }}>Transmitted Payload (10 fields):</div>
+                    <div className="json-sub-header" style={{ marginTop: '0.75rem' }}>Submitted Information:</div>
                     <pre>{JSON.stringify(result.payload, null, 2)}</pre>
                   </div>
                 )}
@@ -493,17 +492,17 @@ export default function AgentPrediction() {
               <div className="placeholder-icon-circle">
                 <Bot size={36} />
               </div>
-              <h3 className="placeholder-title">Awaiting Inference Input</h3>
+              <h3 className="placeholder-title">Ready for Your Input</h3>
               <p className="placeholder-desc">
-                Fill in the pull request attributes or select one of the test presets above, then click
-                <strong> "Predict AI Coding Agent"</strong> to execute the live XGBoost model.
+                Fill in the pull request details or choose a sample pull request above, then click
+                <strong> "Identify AI Assistant"</strong> to see the prediction.
               </p>
               <div className="supported-agents-pill-list">
-                <span className="supported-label font-mono">Trained Agent Classes:</span>
+                <span className="supported-label font-mono">Recognized AI Assistants:</span>
                 <div className="agent-tags">
                   {Object.keys(AGENT_PROFILES).map((agentKey) => (
                     <span key={agentKey} className="agent-tag font-mono">
-                      {agentKey}
+                      {AGENT_PROFILES[agentKey]?.name || agentKey}
                     </span>
                   ))}
                 </div>

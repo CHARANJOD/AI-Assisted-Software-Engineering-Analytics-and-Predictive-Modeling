@@ -33,14 +33,14 @@ export default function Contact() {
         <div className="contact-header">
           <div className="contact-badge">
             <Mail size={14} />
-            <span>Developer Support & Connect</span>
+            <span>Support & Connect</span>
           </div>
           <h1 className="contact-title">
             Get in Touch & <span className="gradient-text">Share Feedback</span>
           </h1>
           <p className="contact-subtitle">
-            Have questions about our machine learning pipelines, dataset methodology, or API integration?
-            Reach out directly or explore our open-source codebase.
+            Have questions about predictions, ideas for improvement, or need assistance?
+            Reach out directly or explore our open-source project.
           </p>
         </div>
 
@@ -49,7 +49,7 @@ export default function Contact() {
           <GlassCard className="contact-form-card">
             <h3 className="form-card-title">Send a Message</h3>
             <p className="form-card-desc">
-              Fill in the form below and we'll review your inquiry regarding model predictions or architecture.
+              Fill in the form below and we will review your message promptly.
             </p>
 
             {submitted ? (
@@ -90,7 +90,7 @@ export default function Contact() {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="subject" className="form-label">Inquiry Type</label>
+                  <label htmlFor="subject" className="form-label">Topic</label>
                   <select
                     id="subject"
                     value={formData.subject}
@@ -98,8 +98,8 @@ export default function Contact() {
                     className="form-input form-select"
                   >
                     <option value="General Feedback">General Feedback</option>
-                    <option value="Model Prediction Inquiry">Model Prediction Inquiry</option>
-                    <option value="API Integration Support">API Integration Support</option>
+                    <option value="Prediction Question">Prediction Question</option>
+                    <option value="Technical Question">Technical Question</option>
                     <option value="Bug Report">Bug Report</option>
                   </select>
                 </div>
@@ -118,7 +118,7 @@ export default function Contact() {
                 </div>
 
                 <Button type="submit" variant="primary" size="md" icon={Send} loading={loading}>
-                  Submit Inquiry
+                  Send Message
                 </Button>
               </form>
             )}
@@ -127,10 +127,9 @@ export default function Contact() {
           {/* Right Column: Project Info & Links */}
           <div className="contact-info-col">
             <GlassCard className="info-card">
-              <h3 className="info-card-title">Repository & Docs</h3>
+              <h3 className="info-card-title">Project Resources</h3>
               <p className="info-card-desc">
-                The entire analytics pipeline, notebooks, trained model artifacts, and FastAPI server
-                are maintained under version control.
+                The open-source codebase, interactive documentation, and project details are publicly accessible.
               </p>
 
               <div className="info-links-list">
@@ -160,8 +159,8 @@ export default function Contact() {
                     <Terminal size={20} />
                   </div>
                   <div className="info-link-text">
-                    <span className="info-link-title">FastAPI Swagger UI</span>
-                    <span className="info-link-sub">Interactive cloud endpoint testing</span>
+                    <span className="info-link-title">API Documentation</span>
+                    <span className="info-link-sub">Interactive endpoints and documentation</span>
                   </div>
                   <ExternalLink size={16} className="info-link-arrow" />
                 </a>
@@ -169,19 +168,19 @@ export default function Contact() {
             </GlassCard>
 
             <GlassCard className="info-card meta-card">
-              <h4 className="meta-card-title">Project Environment</h4>
+              <h4 className="meta-card-title">Platform Summary</h4>
               <div className="meta-list font-mono">
                 <div className="meta-row">
-                  <span className="meta-key">Runtime:</span>
-                  <span className="meta-val">FastAPI on Uvicorn (Linux Render)</span>
+                  <span className="meta-key">Cloud Hosting:</span>
+                  <span className="meta-val">Render Cloud Deployment</span>
                 </div>
                 <div className="meta-row">
-                  <span className="meta-key">ML Engines:</span>
-                  <span className="meta-val">XGBoost 3.4.1 & Scikit-Learn 1.9.0</span>
+                  <span className="meta-key">Analysis Tools:</span>
+                  <span className="meta-val">AI Assistant & Popularity Prediction</span>
                 </div>
                 <div className="meta-row">
-                  <span className="meta-key">Target Endpoints:</span>
-                  <span className="meta-val">/predict/agent & /predict/stars</span>
+                  <span className="meta-key">Response Speed:</span>
+                  <span className="meta-val">Real-time live processing</span>
                 </div>
               </div>
             </GlassCard>

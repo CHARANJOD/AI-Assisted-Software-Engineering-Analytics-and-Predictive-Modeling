@@ -1,8 +1,8 @@
-// Sample Presets for Model 1: AI Coding Agent Prediction
+// Sample Presets for AI Coding Assistant Prediction
 export const AGENT_PRESETS = [
   {
     id: 'cursor-pr',
-    name: 'Cursor PR Preset',
+    name: 'Cursor Sample PR',
     badge: 'Cursor',
     description: 'Frontend state refactor with multi-file modifications',
     data: {
@@ -20,7 +20,7 @@ export const AGENT_PRESETS = [
   },
   {
     id: 'devin-pr',
-    name: 'Devin PR Preset',
+    name: 'Devin Sample PR',
     badge: 'Devin',
     description: 'Autonomous end-to-end bug reproduction and fix',
     data: {
@@ -38,7 +38,7 @@ export const AGENT_PRESETS = [
   },
   {
     id: 'copilot-pr',
-    name: 'Copilot PR Preset',
+    name: 'Copilot Sample PR',
     badge: 'Copilot',
     description: 'Contextual pull request with automated unit test suite',
     data: {
@@ -56,7 +56,7 @@ export const AGENT_PRESETS = [
   },
   {
     id: 'claude-code-pr',
-    name: 'Claude Code PR Preset',
+    name: 'Claude Code Sample PR',
     badge: 'Claude Code',
     description: 'CLI-driven architectural migration and documentation',
     data: {
@@ -74,11 +74,11 @@ export const AGENT_PRESETS = [
   }
 ];
 
-// Sample Presets for Model 2: Repository Popularity Prediction
+// Sample Presets for Repository Popularity Prediction
 export const STARS_PRESETS = [
   {
     id: 'popular-framework',
-    name: 'Popular Framework Preset',
+    name: 'Popular Framework Sample',
     badge: 'High Popularity',
     description: 'Widely used open-source web framework with permissive license',
     data: {
@@ -92,7 +92,7 @@ export const STARS_PRESETS = [
   },
   {
     id: 'utility-library',
-    name: 'Utility Library Preset',
+    name: 'Utility Library Sample',
     badge: 'Moderate Popularity',
     description: 'Specialized developer utility library with moderate community adoption',
     data: {
@@ -106,7 +106,7 @@ export const STARS_PRESETS = [
   },
   {
     id: 'personal-fork',
-    name: 'Personal Fork Preset',
+    name: 'Personal Fork Sample',
     badge: 'Fork / Low Activity',
     description: 'A personal fork maintained for experimental tweaks or upstream patches',
     data: {

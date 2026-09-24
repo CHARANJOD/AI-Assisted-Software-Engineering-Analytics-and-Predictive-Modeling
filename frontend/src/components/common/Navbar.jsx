@@ -53,7 +53,7 @@ export default function Navbar() {
           </div>
           <div className="brand-text">
             <span className="brand-title">AI-SE <span className="gradient-text">Analytics</span></span>
-            <span className="brand-tag">ML Platform</span>
+            <span className="brand-tag">Smart Analytics</span>
           </div>
         </Link>
 
@@ -66,10 +66,10 @@ export default function Navbar() {
             Dashboard
           </NavLink>
           <NavLink to="/predict-agent" className={navItemClass}>
-            Agent Predictor
+            AI Assistant
           </NavLink>
           <NavLink to="/predict-stars" className={navItemClass}>
-            Stars Predictor
+            Repository Popularity
           </NavLink>
           <NavLink to="/history" className={navItemClass}>
             History
@@ -157,10 +157,10 @@ export default function Navbar() {
               Dashboard
             </NavLink>
             <NavLink to="/predict-agent" className={navItemClass} onClick={closeMobileMenu}>
-              Agent Predictor
+              AI Assistant
             </NavLink>
             <NavLink to="/predict-stars" className={navItemClass} onClick={closeMobileMenu}>
-              Stars Predictor
+              Repository Popularity
             </NavLink>
             <NavLink to="/history" className={navItemClass} onClick={closeMobileMenu}>
               History

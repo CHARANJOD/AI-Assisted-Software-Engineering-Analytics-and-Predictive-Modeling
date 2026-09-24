@@ -80,7 +80,7 @@ export default function SignIn() {
             Sign <span className="gradient-text">In</span>
           </h2>
           <p className="auth-subtitle">
-            Enter your credentials to access protected models and telemetry
+            Sign in to access your predictions and history
           </p>
         </div>
 
@@ -89,9 +89,9 @@ export default function SignIn() {
           <div className="firebase-notice-banner">
             <ShieldAlert size={18} className="notice-icon" />
             <div className="notice-text">
-              <strong>Firebase Configuration Pending</strong>
+              <strong>Authentication Setup Notice</strong>
               <span>
-                To enable live authentication, configure your Firebase project API keys in <code>frontend/.env</code>.
+                To enable live accounts, service credentials need to be configured in <code>frontend/.env</code>.
               </span>
             </div>
           </div>
@@ -116,7 +116,7 @@ export default function SignIn() {
                 id="signin-email"
                 required
                 disabled={submitting || googleSubmitting}
-                placeholder="developer@example.com"
+                placeholder="you@example.com"
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);

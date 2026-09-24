@@ -118,13 +118,13 @@ export default function History() {
         <div>
           <div className="history-pre-title">
             <HistoryIcon size={16} />
-            <span>Telemetry Audit Trail • Isolated to UID</span>
+            <span>Saved Predictions • Private to You</span>
           </div>
           <h1 className="history-title">
             Prediction <span className="gradient-text">History</span>
           </h1>
           <p className="history-subtitle">
-            Authenticated record of every ML inference event. All records are partitioned strictly by your Firebase UID in Cloud Firestore.
+            A complete record of your past predictions, saved securely to your account.
           </p>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
@@ -135,7 +135,7 @@ export default function History() {
             onClick={() => fetchHistory(true)}
             disabled={loading || refreshing}
           >
-            {refreshing ? 'Refreshing...' : 'Refresh Stream'}
+            {refreshing ? 'Refreshing...' : 'Refresh History'}
           </Button>
           <BackendStatus />
         </div>
@@ -148,10 +148,10 @@ export default function History() {
             <AlertCircle size={20} style={{ color: 'var(--accent-amber)', flexShrink: 0, marginTop: '2px' }} />
             <div>
               <h4 style={{ fontSize: '0.95rem', fontWeight: 600, color: '#fbbf24', marginBottom: '0.25rem' }}>
-                Firebase Configuration Note
+                Cloud Storage Notice
               </h4>
               <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-                Cloud Firestore requires valid Firebase credentials configured in <code>frontend/.env</code> to persist live predictions to cloud storage. During local testing with mock credentials, prediction history defaults to an empty state.
+                Cloud storage requires configured service credentials in <code>frontend/.env</code> to persist live predictions across sessions. During local testing with mock credentials, prediction history is stored during your active session.
               </p>
             </div>
           </div>
@@ -175,7 +175,7 @@ export default function History() {
             onClick={() => setActiveFilter('agent')}
           >
             <Bot size={13} style={{ color: 'var(--accent-cyan)' }} />
-            <span>Agent Classification</span>
+            <span>AI Assistant</span>
             <span className="filter-count font-mono">{agentCount}</span>
           </button>
 
@@ -198,7 +198,7 @@ export default function History() {
             Loading Prediction Records...
           </h3>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-            Querying your isolated Firestore collection at <code>users/{user?.uid || 'uid'}/predictions</code>
+            Fetching your saved prediction history...
           </p>
         </GlassCard>
       )}
@@ -212,7 +212,7 @@ export default function History() {
           <h3 className="empty-title">Failed to Load Records</h3>
           <p className="empty-desc">{error}</p>
           <Button variant="primary" size="md" onClick={() => fetchHistory(false)}>
-            Retry Query
+            Try Again
           </Button>
         </GlassCard>
       )}
@@ -225,12 +225,12 @@ export default function History() {
           </div>
           <h3 className="empty-title">No predictions yet</h3>
           <p className="empty-desc">
-            Make your first prediction to see it here.
+            Make your first prediction to see it recorded here.
           </p>
           <div className="empty-actions">
             <Link to="/predict-agent">
               <Button variant="primary" size="md" icon={Bot}>
-                Classify Coding Agent
+                Identify AI Assistant
               </Button>
             </Link>
             <Link to="/predict-stars">
@@ -240,7 +240,7 @@ export default function History() {
                 icon={Star}
                 style={{ borderColor: 'rgba(245, 158, 11, 0.3)', color: '#fbbf24' }}
               >
-                Forecast Popularity
+                Estimate Popularity
               </Button>
             </Link>
           </div>
@@ -263,7 +263,7 @@ export default function History() {
                   <div className="history-item-meta">
                     <span className={`history-model-badge ${isAgent ? 'badge-agent' : 'badge-stars'}`}>
                       {isAgent ? <Bot size={14} /> : <Star size={14} />}
-                      <span>{isAgent ? 'Agent Classification' : 'Repository Popularity'}</span>
+                      <span>{isAgent ? 'AI Assistant' : 'Repository Popularity'}</span>
                     </span>
 
                     <span className="history-time-stamp font-mono">
@@ -275,7 +275,7 @@ export default function History() {
                   <div className="history-item-actions">
                     <button
                       className="action-icon-btn"
-                      title="Inspect full JSON payloads"
+                      title="View prediction details"
                       onClick={() => setInspectingItem(record)}
                     >
                       <Eye size={15} />
@@ -360,9 +360,6 @@ export default function History() {
                             <GitBranch size={12} />
                             <span>{record.input?.forks ?? 0} forks</span>
                           </span>
-                          <span className="summary-pill">
-                            <span>Len: {record.input?.repository_name_length ?? 0}</span>
-                          </span>
                         </div>
                       </div>
                     )}
@@ -370,7 +367,7 @@ export default function History() {
 
                   {/* Right: Actual Output */}
                   <div className="prediction-result-display">
-                    <span className="result-label">Backend Inference Result</span>
+                    <span className="result-label">Prediction Result</span>
                     {isAgent ? (
                       <div className="result-val-agent">
                         <Bot size={16} />
@@ -399,7 +396,7 @@ export default function History() {
             <div className="modal-header">
               <div className="modal-title">
                 <FileText size={18} style={{ color: 'var(--accent-violet)' }} />
-                <span>Prediction Record Detail</span>
+                <span>Prediction Details</span>
               </div>
               <button className="modal-close-btn" onClick={() => setInspectingItem(null)}>
                 <X size={18} />
@@ -408,26 +405,24 @@ export default function History() {
 
             <div className="modal-body font-mono">
               <div>
-                <div className="modal-section-title">Record Metadata</div>
+                <div className="modal-section-title">Prediction Summary</div>
                 <pre className="payload-pre">
 {JSON.stringify({
-  recordId: inspectingItem.id,
-  userId: inspectingItem.userId,
-  model: inspectingItem.model,
-  timestamp: inspectingItem.createdAtDate?.toISOString() || 'N/A'
+  predictionType: inspectingItem.modelType || inspectingItem.model,
+  date: inspectingItem.createdAtDate?.toISOString() || 'N/A'
 }, null, 2)}
                 </pre>
               </div>
 
               <div>
-                <div className="modal-section-title">Exact Frontend Input Payload (Sent to ML API)</div>
+                <div className="modal-section-title">Submitted Information</div>
                 <pre className="payload-pre">
 {JSON.stringify(inspectingItem.input || {}, null, 2)}
                 </pre>
               </div>
 
               <div>
-                <div className="modal-section-title">Exact Backend Response (Render ML API)</div>
+                <div className="modal-section-title">Prediction Output</div>
                 <pre className="payload-pre">
 {JSON.stringify(inspectingItem.output || {}, null, 2)}
                 </pre>
@@ -436,7 +431,7 @@ export default function History() {
 
             <div className="modal-footer">
               <Button variant="secondary" size="sm" onClick={() => setInspectingItem(null)}>
-                Close Inspector
+                Close
               </Button>
             </div>
           </GlassCard>
